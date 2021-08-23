@@ -1,21 +1,26 @@
 import type { NextPage } from "next";
 import Head from "next/head";
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import styles from "../styles/Home.module.css";
-import algoliasearch from 'algoliasearch/lite';
-import { InstantSearch, SearchBox, Hits } from 'react-instantsearch-dom';
+import algoliasearch from "algoliasearch/lite";
+import {
+  InstantSearch,
+  SearchBox,
+  Hits,
+  RefinementList,
+} from "react-instantsearch-dom";
 
-const searchClient = algoliasearch('0E1KIME6XO', '2835d4eac134b9e056601f8140effc1b');
+const searchClient = algoliasearch(
+  "0E1KIME6XO",
+  "2835d4eac134b9e056601f8140effc1b"
+);
 
 const Search: NextPage = () => {
-
-  
-
   return (
     <div className={styles.container}>
       <Head>
-        <title>Hello world!</title>
+        <title>Hello search!</title>
         <meta name="description" content="Starter" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
@@ -23,8 +28,16 @@ const Search: NextPage = () => {
       <main className={styles.main}>
         <h1 className={styles.title}>Hello search</h1>
         <InstantSearch searchClient={searchClient} indexName="toykens">
-            <SearchBox />
+          <SearchBox />
+          <div style={{ display: "flex", flexDirection: "column" }}>
+            <p>Age range</p>
+            <RefinementList attribute="facets.age-range" />
+            <p>Brand</p>
+            <RefinementList attribute="facets.brand" />
+          </div>
+          <div style={{ display: "flex", flexDirection: "column" }}>
             <Hits />
+          </div>
         </InstantSearch>
 
         <p className={styles.description}>
