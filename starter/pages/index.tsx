@@ -17,7 +17,7 @@ const Home: NextPage = () => {
     //     console.log(x);
     // });
 
-    // 2. Login - http://localhost:3000/api/login?username=dave@daveleigh.xyz&password=password - Yes it will be HTTP Post 
+    // 2. Login - http://localhost:3000/api/login?username=dave@daveleigh.xyz&password=password - Yes it will be HTTP Post. 
 
     // 3. Utilise logged in Client (Will abstarct this away in API client)
 
@@ -28,7 +28,7 @@ const Home: NextPage = () => {
     //   .then((x) => {
     //     console.log(x);
     //   });
-    
+
   }, []);
 
   return (
