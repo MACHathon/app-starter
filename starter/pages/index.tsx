@@ -1,19 +1,35 @@
 import type { NextPage } from "next";
 import Head from "next/head";
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import styles from "../styles/Home.module.css";
-import { client } from '../lib/Commercetools/Clients/APIClient';
+import {
+  AnonUserClient,
+  LoggedInUserClient,
+} from "../lib/Commercetools/Clients/APIClient";
 
 const Home: NextPage = () => {
-
   useEffect(() => {
-
-    client.products().get().execute().then((x) => {
-        console.log(x);
-    })
     
-  }, []);  
+    // 1. Sign up
+
+    // AnonUserClient.me().signup().post({body: { email: "dave@daveleigh.xyz", password: "password", } }).execute().then((x) => {
+    //     console.log(x);
+    // });
+
+    // 2. Login - http://localhost:3000/api/login?username=dave@daveleigh.xyz&password=password - Yes it will be HTTP Post 
+
+    // 3. Utilise logged in Client (Will abstarct this away in API client)
+
+    // LoggedInUserClient
+    //   .me()
+    //   .get()
+    //   .execute()
+    //   .then((x) => {
+    //     console.log(x);
+    //   });
+    
+  }, []);
 
   return (
     <div className={styles.container}>
