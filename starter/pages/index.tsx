@@ -11,7 +11,8 @@ import Login from "../components/login/login";
 
 const Home: NextPage = () => {
   
-   // useEffect(() => {
+  // Sign up to do
+  // useEffect(() => {
   //   AnonUserClient.me()
   //     .signup()
   //     .post({ body: { email: "dave@daveleigh.xyz", password: "password" } })
@@ -21,26 +22,7 @@ const Home: NextPage = () => {
   //     });
   // }, []);
 
-  useEffect(() => {
-    (async () => {
-      const rawResponse = await fetch("http://localhost:3000/api/login", {
-        method: "POST",
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          username: "dave@daveleigh.xyz",
-          password: "password",
-        }),
-      });
-      const content = await rawResponse.json();
-      console.log(content);
-    })();
-  }, []);
-
-  // 3. Utilise logged in Client (Will abstarct this away in API client)
-
+  // Once logged in..
   // LoggedInUserClient
   //   .me()
   //   .get()
@@ -59,23 +41,7 @@ const Home: NextPage = () => {
       </Head>
 
       <main className={styles.main}>
-
-
         <Login />
-
-
-        <p className={styles.description}>
-          Get started by editing{" "}
-          <code className={styles.code}>pages/index.js</code>
-        </p>
-
-        <div className="p-6 max-w-sm mx-auto bg-white rounded-xl shadow-md flex items-center space-x-4">
-          <div className="flex-shrink-0"></div>
-          <div>
-            <div className="text-xl font-medium text-black">Hello</div>
-            <p className="text-gray-500">Tailwind</p>
-          </div>
-        </div>
       </main>
     </div>
   );

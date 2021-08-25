@@ -9,14 +9,14 @@ import fetch from "node-fetch";
 import cookie from "cookie";
 import { TokenInfo } from "@commercetools/sdk-auth";
 
-const projectKey = process.env.NEXT_PUBLIC_COMMERCE_TOOLS_PROJECT_KEY ?? "";
+const projectKey = process.env.NEXT_PUBLIC_COMMERCE_TOOLS_PROJECT_KEY ?? '';
 
 const authMiddleware = createAuthMiddlewareForClientCredentialsFlow({
   host: "https://auth.europe-west1.gcp.commercetools.com",
   projectKey,
   credentials: {
-    clientId: "o04rLcoBXPc01VY3JH_1oc8V",
-    clientSecret: "7PGH7wsAOasZmtqtezT-Ef556IsJcJOU",
+    clientId: process.env.NEXT_PUBLIC_COMMERCE_TOOLS_CLIENT_ID,
+    clientSecret: process.env.NEXT_PUBLIC_COMMERCE_TOOLS_CLIENT_SECRET,
   },
   fetch,
 });
@@ -33,7 +33,7 @@ const anonClient = createClient({
 export const AnonUserClient = createApiBuilderFromCtpClient(
   anonClient
 ).withProjectKey({
-  projectKey: process.env.NEXT_PUBLIC_COMMERCE_TOOLS_PROJECT_KEY ?? "",
+  projectKey: process.env.NEXT_PUBLIC_COMMERCE_TOOLS_PROJECT_KEY ?? '',
 });
 
 const getToken: TokenInfo | null = () => {
@@ -69,5 +69,5 @@ const loggedInUserClient = createClient({
 export const LoggedInUserClient = createApiBuilderFromCtpClient(
   loggedInUserClient
 ).withProjectKey({
-  projectKey: process.env.NEXT_PUBLIC_COMMERCE_TOOLS_PROJECT_KEY ?? "",
+  projectKey: process.env.NEXT_PUBLIC_COMMERCE_TOOLS_PROJECT_KEY ?? '',
 });
