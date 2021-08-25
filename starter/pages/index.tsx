@@ -9,15 +9,35 @@ import {
 } from "../lib/Commercetools/Clients/APIClient";
 
 const Home: NextPage = () => {
+  
   useEffect(() => {
-    
+    (async () => {
+      const rawResponse = await fetch("http://localhost:3000/api/login", {
+        method: "POST",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          username: "dave@daveleigh.xyz",
+          password: "password",
+        }),
+      });
+      const content = await rawResponse.json();
+      console.log(content);
+    })()
+  }, [])
+  
+  //useEffect(() => {
     // 1. Sign up
 
     // AnonUserClient.me().signup().post({body: { email: "dave@daveleigh.xyz", password: "password", } }).execute().then((x) => {
     //     console.log(x);
     // });
 
-    // 2. Login - http://localhost:3000/api/login?username=dave@daveleigh.xyz&password=password - Yes it will be HTTP Post. 
+    // 2. Login - http://localhost:3000/api/login?username=dave@daveleigh.xyz&password=password - Yes it will be HTTP Post.
+
+   
 
     // 3. Utilise logged in Client (Will abstarct this away in API client)
 
@@ -28,8 +48,7 @@ const Home: NextPage = () => {
     //   .then((x) => {
     //     console.log(x);
     //   });
-
-  }, []);
+ // }, []);
 
   return (
     <div className={styles.container}>

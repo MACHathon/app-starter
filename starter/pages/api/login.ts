@@ -1,6 +1,7 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 import type { NextApiRequest, NextApiResponse } from "next";
 import { serialize } from "cookie";
+import SdkAuth from '@commercetools/sdk-auth'
 
 type Data = {
   name: string;
@@ -11,12 +12,11 @@ export default async function handler(
   res: NextApiResponse<Data>
 ) {
 
-  // TODO - Obviously change to HTTP POST ;)
   var result = await loginClient
     .customerPasswordFlow(
       {
-        username: req.query.username,
-        password: req.query.password,
+        username: req.body.username ?? "",
+        password: req.body.password ?? "",
       },
       {
         disableRefreshToken: false,
@@ -38,7 +38,7 @@ export default async function handler(
 
 const loginClient = new SdkAuth({
   host: 'https://auth.europe-west1.gcp.commercetools.com',
-  "machathon-sbx",
+  projectKey: "machathon-sbx",
   disableRefreshToken: false,
   credentials: {
     clientId: process.env.COMMERCE_TOOLS_ADMIN_CLIENT_ID,
