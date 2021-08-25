@@ -10,7 +10,7 @@
 
 # Todo
 
-- Preiiter / Linting?
+- Prettier / Linting?
 - Contentful integration
 
 ## Commercetools Api Client

@@ -7,9 +7,20 @@ import {
   AnonUserClient,
   LoggedInUserClient,
 } from "../lib/Commercetools/Clients/APIClient";
+import Login from "../components/login/login";
 
 const Home: NextPage = () => {
   
+   // useEffect(() => {
+  //   AnonUserClient.me()
+  //     .signup()
+  //     .post({ body: { email: "dave@daveleigh.xyz", password: "password" } })
+  //     .execute()
+  //     .then((x) => {
+  //       console.log(x);
+  //     });
+  // }, []);
+
   useEffect(() => {
     (async () => {
       const rawResponse = await fetch("http://localhost:3000/api/login", {
@@ -25,30 +36,19 @@ const Home: NextPage = () => {
       });
       const content = await rawResponse.json();
       console.log(content);
-    })()
-  }, [])
-  
-  //useEffect(() => {
-    // 1. Sign up
+    })();
+  }, []);
 
-    // AnonUserClient.me().signup().post({body: { email: "dave@daveleigh.xyz", password: "password", } }).execute().then((x) => {
-    //     console.log(x);
-    // });
+  // 3. Utilise logged in Client (Will abstarct this away in API client)
 
-    // 2. Login - http://localhost:3000/api/login?username=dave@daveleigh.xyz&password=password - Yes it will be HTTP Post.
+  // LoggedInUserClient
+  //   .me()
+  //   .get()
+  //   .execute()
+  //   .then((x) => {
+  //     console.log(x);
+  //   });
 
-   
-
-    // 3. Utilise logged in Client (Will abstarct this away in API client)
-
-    // LoggedInUserClient
-    //   .me()
-    //   .get()
-    //   .execute()
-    //   .then((x) => {
-    //     console.log(x);
-    //   });
- // }, []);
 
   return (
     <div className={styles.container}>
@@ -59,7 +59,10 @@ const Home: NextPage = () => {
       </Head>
 
       <main className={styles.main}>
-        <h1 className={styles.title}>Hello world</h1>
+
+
+        <Login />
+
 
         <p className={styles.description}>
           Get started by editing{" "}
