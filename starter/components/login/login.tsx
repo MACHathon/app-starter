@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { LoggedInUserClient } from "../../lib/Commercetools/Clients/APIClient";
+import { LoggedInUserClient } from "../../lib/Commercetools/Clients/ApiClient";
 
 interface LoginProps {}
 
@@ -70,16 +70,47 @@ const Login: React.FC<LoginProps> = ({}) => {
         <h1>Logged in</h1>
       ) : (
         <div>
-          <p>dave@daveleigh.xyz</p>
-          <p>password</p>
-          <input onChange={handleUsernameChange} placeholder="Username" />
-          <input
-            onChange={handlePasswordChange}
-            type="password"
-            placeholder="Password"
-          />
-          <button onClick={handleLoginClick}>Login</button>
-          {isError ? <div>Invalid credentials</div> : null}
+          <div className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 flex flex-col">
+            <div className="mb-4">
+              <label
+                className="block text-grey-darker text-sm font-bold mb-2"
+                htmlFor="username"
+              >
+                Username
+              </label>
+              <input
+                className="shadow appearance-none border rounded w-full py-2 px-3 text-grey-darker"
+                id="username"
+                onChange={handleUsernameChange}
+                placeholder="Username"
+              />
+            </div>
+            <div className="mb-6">
+              <label
+                className="block text-grey-darker text-sm font-bold mb-2"
+                htmlFor="password"
+              >
+                Pin #
+              </label>
+              <input
+                className="shadow appearance-none border border-red rounded w-full py-2 px-3 text-grey-darker mb-3"
+                id="password"
+                onChange={handlePasswordChange}
+                placeholder="PIN"
+              />
+            </div>
+            <div className="flex items-center justify-between">
+              <button
+                className="bg-green-600 hover:bg-green-600 text-white font-bold py-2 px-4 rounded"
+                onClick={handleLoginClick}
+              >
+                Login
+              </button>
+              <p className="inline-block align-baseline font-bold text-sm text-blue hover:text-blue-darker">
+                {isError ? <div>Invalid credentials</div> : null}
+              </p>
+            </div>
+          </div>
         </div>
       )}
     </>

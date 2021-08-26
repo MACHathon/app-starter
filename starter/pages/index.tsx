@@ -3,44 +3,21 @@ import Head from "next/head";
 import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import styles from "../styles/Home.module.css";
-import {
-  AnonUserClient,
-  LoggedInUserClient,
-} from "../lib/Commercetools/Clients/APIClient";
 import Login from "../components/login/login";
+import SignUp from "../components/signup/signup";
 
 const Home: NextPage = () => {
   
-  // Sign up to do
-  // useEffect(() => {
-  //   AnonUserClient.me()
-  //     .signup()
-  //     .post({ body: { email: "dave@daveleigh.xyz", password: "password" } })
-  //     .execute()
-  //     .then((x) => {
-  //       console.log(x);
-  //     });
-  // }, []);
-
-  // Once logged in..
-  // LoggedInUserClient
-  //   .me()
-  //   .get()
-  //   .execute()
-  //   .then((x) => {
-  //     console.log(x);
-  //   });
-
-
   return (
-    <div className={styles.container}>
+    <div className="min-h-screen bg-gray-100 py-6 flex flex-col justify-center sm:py-12">
       <Head>
-        <title>Hello world!</title>
-        <meta name="description" content="Starter" />
+        <title>Toykens!</title>
+        <meta name="description" content="Toyken" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
       <main className={styles.main}>
+        <SignUp />
         <Login />
       </main>
     </div>
