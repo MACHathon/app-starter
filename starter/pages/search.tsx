@@ -12,8 +12,8 @@ import {
 } from "react-instantsearch-dom";
 
 const searchClient = algoliasearch(
-  "0E1KIME6XO",
-  "2835d4eac134b9e056601f8140effc1b"
+  process.env.NEXT_PUBLIC_ALGOLIA_APP_ID ?? '',
+  process.env.NEXT_PUBLIC_ALGOLIA_API_KEY ?? ''
 );
 
 const Search: NextPage = () => {
