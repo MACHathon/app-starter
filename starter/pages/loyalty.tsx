@@ -16,15 +16,32 @@ const Loyalty: NextPage<any> = () => {
   const integrationApi = new TalonOne.IntegrationApi();
 
   const [userLoyaltyInfo, setUserLoyaltyInfo] = React.useState<string>("");
+  const customerId = "41c6e13b-f54c-43df-b65d-9d326e5954de";
+  function getData() {
+    return integrationApi.getCustomerInventory(customerId, {
+      loyalty: true,
+    });
+  }
+
   useEffect(() => {
+    getData().then((response: any) => {
+      setUserLoyaltyInfo(JSON.stringify(response));
+    });
+  }, []);
+  const incrementToykensClick = () => {
     integrationApi
-      .getCustomerInventory("41c6e13b-f54c-43df-b65d-9d326e5954de", {
-        loyalty: true,
-      })
+      .updateCustomerProfileV2(
+        customerId,
+        {
+          responseContent: ["customerProfile"],
+        },
+        { runRuleEngine: true }
+      )
       .then((response: any) => {
+        //todo - how do we increment points on demand?
         setUserLoyaltyInfo(JSON.stringify(response));
       });
-  }, []);
+  };
   return (
     <div className={styles.container}>
       <Head>
@@ -37,6 +54,12 @@ const Loyalty: NextPage<any> = () => {
         <h1 className={styles.title}>Hello loyalty</h1>
 
         {userLoyaltyInfo}
+        <button
+          className="bg-green-600 hover:bg-green-600 text-white font-bold py-2 px-4 rounded"
+          onClick={incrementToykensClick}
+        >
+          Increment toykens
+        </button>
       </main>
     </div>
   );
