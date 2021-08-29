@@ -69,8 +69,8 @@ const Login: React.FC<LoginProps> = ({}) => {
       ) : isLoggedIn ? (
         <h1>Logged in</h1>
       ) : (
-        <div>
-          <div className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 flex flex-col">
+        <div className="w-1/4">
+          <div className="">
             <div className="mb-4">
               <label
                 className="block text-grey-darker text-sm font-bold mb-2"
@@ -79,7 +79,7 @@ const Login: React.FC<LoginProps> = ({}) => {
                 Your ID
               </label>
               <input
-                className="shadow appearance-none border rounded w-full py-2 px-3 text-grey-darker"
+                className="px-3 py-3 placeholder-blueGray-300 text-blueGray-600 relative bg-white bg-white rounded text-sm border-0 shadow outline-none focus:outline-none focus:ring w-full"
                 id="username"
                 onChange={handleUsernameChange}
                 placeholder="Username"
@@ -93,7 +93,7 @@ const Login: React.FC<LoginProps> = ({}) => {
                 Your PIN number
               </label>
               <input
-                className="shadow appearance-none border border-red rounded w-full py-2 px-3 text-grey-darker mb-3"
+                className="px-3 py-3 placeholder-blueGray-300 text-blueGray-600 relative bg-white bg-white rounded text-sm border-0 shadow outline-none focus:outline-none focus:ring w-full"
                 id="password"
                 onChange={handlePasswordChange}
                 placeholder="PIN"
@@ -101,7 +101,7 @@ const Login: React.FC<LoginProps> = ({}) => {
             </div>
             <div className="flex items-center justify-between">
               <button
-                className="bg-green-600 hover:bg-green-600 text-white font-bold py-2 px-4 rounded"
+                className="w-full bg-green-600 hover:bg-green-600 text-white font-bold py-2 px-4 rounded"
                 onClick={handleLoginClick}
               >
                 Login

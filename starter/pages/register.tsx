@@ -16,7 +16,7 @@ const Home: NextPage = () => {
       </Head>
 
       <main className={styles.main}>
-      <h1 className="text-2xl font-normal leading-normal mt-0 mb-2 text-blueGray-800">Create an account for your child</h1>
+      <h1 className="text-2xl font-normal leading-normal mt-0 mb-2 text-blueGray-800 pb-6">Create an account for your child</h1>
         <SignUp />
       </main>
     </div>

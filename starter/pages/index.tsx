@@ -17,8 +17,11 @@ const Home: NextPage = () => {
       </Head>
 
       <main className={styles.main}>
-        <h1 className="text-2xl font-normal leading-normal mt-0 mb-2 text-blueGray-800">Child Login</h1>
+        <h1 className="text-2xl font-normal leading-normal mt-0 mb-2 text-blueGray-800 pb-2">Child Login</h1>
         <Login />
+        <div>
+          <a href="/register" className="text-xs font-semibold inline-block py-1 px-2 uppercase rounded text-indigo-600 bg-indigo-200 uppercase last:mr-0 mr-1 mt-6">Register</a>
+        </div>
       </main>
     </div>
   );
