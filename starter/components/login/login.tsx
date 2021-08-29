@@ -106,7 +106,9 @@ const Login: React.FC<LoginProps> = ({}) => {
               >
                 Login
               </button>
-              <p className="inline-block align-baseline font-bold text-sm text-blue hover:text-blue-darker">
+            </div>
+            <div className="flex items-center justify-between">
+              <p className="text-red-600 pt-2 inline-block align-baseline font-bold text-sm text-blue hover:text-blue-darker">
                 {isError ? <div>Invalid credentials</div> : null}
               </p>
             </div>
