@@ -76,7 +76,7 @@ const Login: React.FC<LoginProps> = ({}) => {
                 className="block text-grey-darker text-sm font-bold mb-2"
                 htmlFor="username"
               >
-                Username
+                Your ID
               </label>
               <input
                 className="shadow appearance-none border rounded w-full py-2 px-3 text-grey-darker"
@@ -90,7 +90,7 @@ const Login: React.FC<LoginProps> = ({}) => {
                 className="block text-grey-darker text-sm font-bold mb-2"
                 htmlFor="password"
               >
-                Pin #
+                Your PIN number
               </label>
               <input
                 className="shadow appearance-none border border-red rounded w-full py-2 px-3 text-grey-darker mb-3"

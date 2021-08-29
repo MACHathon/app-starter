@@ -15,7 +15,7 @@ export default async function handler(
   if (req.body.username && req.body.password) {
     // Get email address from username - Probably not ideal but its a hackathon :)
     var response = await SecureApiClient.customers()
-      .get({ queryArgs: { where: 'firstName = "dave"' } })
+      .get({ queryArgs: { where: `firstName = "${req.body.username}"` } })
       .execute();
       
       if (response.statusCode == 200) {
@@ -26,7 +26,7 @@ export default async function handler(
             var result = await loginClient.customerPasswordFlow(
               {
                 username: emailAddress,
-                password: req.body.password ?? "",
+                password: req.body.password ?? '',
               },
               {
                 disableRefreshToken: false,
@@ -63,7 +63,7 @@ export default async function handler(
 
 const loginClient = new SdkAuth({
   host: "https://auth.europe-west1.gcp.commercetools.com",
-  projectKey: "machathon-sbx",
+  projectKey: process.env.NEXT_PUBLIC_COMMERCE_TOOLS_PROJECT_KEY,
   disableRefreshToken: false,
   credentials: {
     clientId: process.env.COMMERCE_TOOLS_ADMIN_CLIENT_ID,

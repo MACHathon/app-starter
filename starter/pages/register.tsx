@@ -3,7 +3,6 @@ import Head from "next/head";
 import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import styles from "../styles/Home.module.css";
-import Login from "../components/login/login";
 import SignUp from "../components/signup/signup";
 
 const Home: NextPage = () => {
@@ -17,8 +16,8 @@ const Home: NextPage = () => {
       </Head>
 
       <main className={styles.main}>
-        <h1 className="text-2xl font-normal leading-normal mt-0 mb-2 text-blueGray-800">Child Login</h1>
-        <Login />
+      <h1 className="text-2xl font-normal leading-normal mt-0 mb-2 text-blueGray-800">Create an account for your child</h1>
+        <SignUp />
       </main>
     </div>
   );
