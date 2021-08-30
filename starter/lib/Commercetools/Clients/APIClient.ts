@@ -36,13 +36,13 @@ export const AnonUserClient = createApiBuilderFromCtpClient(
   projectKey: process.env.NEXT_PUBLIC_COMMERCE_TOOLS_PROJECT_KEY ?? '',
 });
 
-const getToken: TokenInfo | null = () => {
+const getToken = () => {
   if (process.browser) {
     const cookieValue = cookie.parse(document.cookie)["token"];
 
     console.log(cookieValue);
 
-    return cookieValue as TokenInfo;
+    return cookieValue;
   }
 
   return null;

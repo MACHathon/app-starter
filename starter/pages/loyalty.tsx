@@ -27,7 +27,7 @@ const Loyalty: NextPage<any> = () => {
     getData().then((response: any) => {
       setUserLoyaltyInfo(JSON.stringify(response));
     });
-  }, []);
+  }, [getData]);
   const incrementToykensClick = () => {
     integrationApi
       .updateCustomerProfileV2(
