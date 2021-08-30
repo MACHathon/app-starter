@@ -2,7 +2,7 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 import { serialize } from "cookie";
 import SdkAuth from "@commercetools/sdk-auth";
-import { SecureApiClient } from "../../lib/Commercetools/Clients/SecureApiClient";
+import { SecureApiClient } from "../../packages/Commercetools/Clients/SecureApiClient";
 
 type Data = {
   data: string;
