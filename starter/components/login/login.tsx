@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { LoggedInUserClient } from "../../lib/Commercetools/Clients/ApiClient";
+import { LoggedInUserClient } from "../../packages/Commercetools/Clients/ApiClient";
 
 
 interface LoginProps {}
