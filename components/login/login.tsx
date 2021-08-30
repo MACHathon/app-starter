@@ -30,7 +30,7 @@ const Login: React.FC<LoginProps> = ({}) => {
 
   const handleLoginClick = () => {
     (async () => {
-      const rawResponse = await fetch("http://localhost:3000/api/login", {
+      const rawResponse = await fetch(`${process.env.NEXT_PUBLIC_API_HOST}/api/login`, {
         method: "POST",
         headers: {
           Accept: "application/json",
