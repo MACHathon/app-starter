@@ -4,7 +4,7 @@ import {
   TypeReference,
 } from "@commercetools/platform-sdk/dist/generated/models/type";
 import React, { useState, useEffect } from "react";
-import { AnonUserClient } from "../../lib/Commercetools/Clients/ApiClient";
+import { AnonUserClient } from "../../packages/Commercetools/Clients/ApiClient";
 
 interface SignUpProps {}
 
