@@ -14,6 +14,7 @@ const Home: NextPage = () => {
         <title>Welcome to the Toyken ecosystem | Children helping businesses through economic recovery</title>
         <meta name="description" content="Toyken" />
         <link rel="icon" href="/favicon.ico" />
+      
       </Head>
 
       <main className={styles.main}>

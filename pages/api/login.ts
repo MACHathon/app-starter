@@ -12,6 +12,7 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse<Data>
 ) {
+
   if (req.body.username && req.body.password) {
     // Get email address from username - Probably not ideal but its a hackathon :)
     var response = await SecureApiClient.customers()
@@ -71,3 +72,10 @@ const loginClient = new SdkAuth({
   },
   fetch,
 });
+
+  // Hack to create a custom object quickly
+  /*
+  SecureApiClient.customObjects().post({body: { container: "child_meta_data", key: "latestId", value: "0066"}}).execute() 
+  .then((response: any) => {
+   console.log(response);
+  }); */
