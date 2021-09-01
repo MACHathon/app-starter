@@ -35,9 +35,9 @@ const Login: React.FC<LoginProps> = ({}) => {
       console.log(categories);
 
       // Create new item - comment back in to test
-      //createItem(categories[1].id, "Daves Barbie Doll", "0077", "5-8", "Used - good", "Barbie");
+      //createItem(categories[1].id, "Daves Barbie Doll", me.id, "5-8", "Used - good", "Barbie");
 
-      
+
     })();
   }, []);
 

@@ -3,8 +3,7 @@ import { LoggedInUserClient } from "../Clients/ApiClient";
 const getMeRequest = () => {
   return LoggedInUserClient.me()
   .get()
-  .execute();
- 
+  .execute(); 
 };
 
 export const getMe = async () => {
@@ -12,7 +11,7 @@ export const getMe = async () => {
 
   if (!!response?.body?.id) {
 
-    let userType = getUserType(response.body.email);
+    let userType = getUserType(response.body.companyName);
 
     return {
         email: response.body.email,
@@ -27,10 +26,16 @@ export const getMe = async () => {
   return null;
 };
 
-export const getUserType = (email:string) : UserType => {
-    if (email.indexOf('child') > -1) return 'child';
-    if (email.indexOf('parent') > -1) return 'parent';
-    return 'retailer';
+export const getUserType = (linkedChildOrCompanyname:string | undefined) : UserType => {
+
+    // Using company name as link to child (Parent acc) OR as Retailer business name (Retailer acc)
+    // Yes.. this is a hack!
+    if (!!linkedChildOrCompanyname)
+    {
+        return linkedChildOrCompanyname.indexOf('child') > -1 ? 'parent' : 'retailer'
+    }
+
+    return 'child';
 }
 
 type UserType = 'parent' | 'child' | 'retailer';
