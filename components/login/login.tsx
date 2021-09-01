@@ -5,6 +5,7 @@ import {
   LoggedInUserClient,
 } from "../../packages/Commercetools/Clients/ApiClient";
 import { createItem } from "../../packages/Commercetools/Items/createItem";
+import { getMe } from "../../packages/Commercetools/Users/getUser";
 
 interface LoginProps {}
 
@@ -17,38 +18,28 @@ const Login: React.FC<LoginProps> = ({}) => {
 
   useEffect(() => {
     (async () => {
+      
+      /*** TESTING ALL THE API CALLS TO CT ***/ 
 
-      // HERE I AM TESTING ALL THE API CALLS TO CT
+      var me = await getMe();
+
+      if (!!me) {
+        console.log(me);
+        setIsLoggedIn(true);
+        setIsWaiting(false);
+      } else {
+        setIsWaiting(false);
+      }
 
       var categories = await getCategories();
-
       console.log(categories);
 
-      // comment back in to test
+      // Create new item - comment back in to test
       //createItem(categories[1].id, "Daves Barbie Doll", "0077", "5-8", "Used - good", "Barbie");
 
-      validateLoggedInUser();
-
-      //addItem("davetest", "");
+      
     })();
   }, []);
-
-  const validateLoggedInUser = () => {
-    LoggedInUserClient.me()
-      .get()
-      .execute()
-      .then((response: any) => {
-        if (!!response?.body?.id) {
-          console.log(response);
-          setIsLoggedIn(true);
-          setIsWaiting(false);
-        }
-      })
-      .catch((error) => {
-        console.log(error);
-        setIsWaiting(false);
-      });
-  };
 
   const handleLoginClick = () => {
     (async () => {
