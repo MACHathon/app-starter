@@ -1,6 +1,10 @@
 import React, { useState, useEffect } from "react";
-import { LoggedInUserClient } from "../../packages/Commercetools/Clients/ApiClient";
-
+import { getCategories } from "../../packages/Commercetools/Categories/getCategories";
+import {
+  AnonUserClient,
+  LoggedInUserClient,
+} from "../../packages/Commercetools/Clients/ApiClient";
+import { createItem } from "../../packages/Commercetools/Items/createItem";
 
 interface LoginProps {}
 
@@ -12,6 +16,24 @@ const Login: React.FC<LoginProps> = ({}) => {
   const [isError, setIsError] = React.useState<boolean>(false);
 
   useEffect(() => {
+    (async () => {
+
+      // HERE I AM TESTING ALL THE API CALLS TO CT
+
+      var categories = await getCategories();
+
+      console.log(categories);
+
+      // comment back in to test
+      //createItem(categories[1].id, "Daves Barbie Doll", "0077", "5-8", "Used - good", "Barbie");
+
+      validateLoggedInUser();
+
+      //addItem("davetest", "");
+    })();
+  }, []);
+
+  const validateLoggedInUser = () => {
     LoggedInUserClient.me()
       .get()
       .execute()
@@ -26,21 +48,24 @@ const Login: React.FC<LoginProps> = ({}) => {
         console.log(error);
         setIsWaiting(false);
       });
-  }, []);
+  };
 
   const handleLoginClick = () => {
     (async () => {
-      const rawResponse = await fetch(`${process.env.NEXT_PUBLIC_API_HOST}/api/login`, {
-        method: "POST",
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          username: username,
-          password: password,
-        }),
-      });
+      const rawResponse = await fetch(
+        `${process.env.NEXT_PUBLIC_API_HOST}/api/login`,
+        {
+          method: "POST",
+          headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            username: username,
+            password: password,
+          }),
+        }
+      );
 
       if (rawResponse.status != 200) {
         setIsError(true);
