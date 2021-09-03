@@ -1,11 +1,11 @@
 import {  LoggedInUserClient } from "../Clients/ApiClient";
 
-export const createItem = (categoryId: string, name: string, childid: string, ageRange: string, condition: string, brand: string) => {
+export const createItem =  async(categoryId: string, name: string, childid: string, ageRange: string, condition: string, brand: string) => {
   
   let slug = name.replace(/\s+/g, "-").toLowerCase();
   let toyType = "6102b311-bdc5-4760-b43f-ab7061cf74ea";
 
-  return LoggedInUserClient.products()
+  let createdProduct = await LoggedInUserClient.products()
     .post({
       body: {
         productType: {
@@ -92,6 +92,18 @@ export const createItem = (categoryId: string, name: string, childid: string, ag
       },
     })
     .execute();
+
+    LoggedInUserClient.products().withId({ ID: createdProduct.body.id }).post( { body: {
+      version: createdProduct.body.version, 
+      actions: [
+         {
+           action: "publish",
+           scope: "All"       
+         }
+       ]
+     }}).execute();
+
+     return createdProduct;
 };
 
 // const getProductProjectionByQuery = ({

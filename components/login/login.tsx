@@ -4,7 +4,9 @@ import {
   AnonUserClient,
   LoggedInUserClient,
 } from "../../packages/Commercetools/Clients/ApiClient";
+import { assignItem } from "../../packages/Commercetools/Items/assignItemToRetailer";
 import { createItem } from "../../packages/Commercetools/Items/createItem";
+import { createRetailer } from "../../packages/Commercetools/Users/createUser";
 import { getMe } from "../../packages/Commercetools/Users/getUser";
 
 interface LoginProps {}
@@ -26,8 +28,7 @@ const Login: React.FC<LoginProps> = ({}) => {
       console.log("me");
       console.log(me);
 
-      if (!!me) {
-        
+      if (!!me) {        
         setIsLoggedIn(true);
         setIsWaiting(false);
       } else {
@@ -37,12 +38,22 @@ const Login: React.FC<LoginProps> = ({}) => {
       var categories = await getCategories();
       console.log(categories);
 
-      // Create new item - comment back in to test
-      //createItem(categories[1].id, "Daves Barbie Doll", me.id, "5-8", "Used - good", "Barbie");
+      if (me?.userType == 'child') {
+        let createdItem = await createItem(categories[1].id, "Daves Barbie Stickers", me.id as string, "5-8", "Used - good", "Barbie");
+        console.log("Created Item: " + createdItem.body.id);
+      }
 
+      //createRetailer("dave-retailer@gmail.com", "password", "Dave Retailer", "BS30 6EL", "UK");
 
+      if (me?.userType == 'retailer') {
+        // Product ID, SKU
+        assignItem(me.commerceToolsId,  "0902b7ad-7c3c-4351-99e2-3b290f9a9e53", "00661-daves-barbie-stickers");
+        console.log("Assigned Item to Retailer");
+      }
     })();
   }, []);
+
+  
 
   const handleLoginClick = () => {
     (async () => {

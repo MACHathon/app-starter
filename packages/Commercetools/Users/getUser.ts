@@ -30,13 +30,13 @@ export const getMe = async () => {
   } 
 };
 
-export const getUserType = (linkedChildOrCompanyname:string | undefined) : UserType => {
+export const getUserType = (companyName:string | undefined) : UserType => {
 
     // Using company name as link to child (Parent acc) OR as Retailer business name (Retailer acc)
     // Yes.. this is a hack!
-    if (!!linkedChildOrCompanyname)
+    if (!!companyName)
     {
-        return linkedChildOrCompanyname.indexOf('child') > -1 ? 'parent' : 'retailer'
+        return companyName.indexOf('child') > -1 ? 'parent' : 'retailer'
     }
 
     return 'child';
