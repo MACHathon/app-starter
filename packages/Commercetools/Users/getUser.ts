@@ -1,5 +1,6 @@
 import { LoggedInUserClient } from "../Clients/ApiClient";
 
+
 const getMeRequest = () => {
   return LoggedInUserClient.me()
   .get()
@@ -7,23 +8,26 @@ const getMeRequest = () => {
 };
 
 export const getMe = async () => {
-  const response = await getMeRequest();
 
-  if (!!response?.body?.id) {
+  try {
+    const response = await getMeRequest();
+    if (!!response?.body?.id) {
 
-    let userType = getUserType(response.body.companyName);
-
-    return {
-        email: response.body.email,
-        userId: response.body.firstName,
-        commerceToolsId: response.body.id,
-        id: response.body.title,
-        userType: userType,
-        linkedChild: userType == 'parent' ? response.body.companyName : null
+      let userType = getUserType(response.body.companyName);
+  
+      return {
+          email: response.body.email,
+          userId: response.body.firstName,
+          commerceToolsId: response.body.id,
+          id: response.body.title,
+          userType: userType,
+          linkedChild: userType == 'parent' ? response.body.companyName : null
+      }
     }
-  }
-
-  return null;
+    return null;
+  } catch (e) {
+    return null;
+  } 
 };
 
 export const getUserType = (linkedChildOrCompanyname:string | undefined) : UserType => {

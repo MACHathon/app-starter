@@ -23,8 +23,11 @@ const Login: React.FC<LoginProps> = ({}) => {
 
       var me = await getMe();
 
+      console.log("me");
+      console.log(me);
+
       if (!!me) {
-        console.log(me);
+        
         setIsLoggedIn(true);
         setIsWaiting(false);
       } else {
